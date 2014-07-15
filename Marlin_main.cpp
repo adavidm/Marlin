@@ -41,6 +41,10 @@
 #include "pins_arduino.h"
 
 
+
+
+
+
 #if NUM_SERVOS > 0
 #include "Servo.h"
 #endif
@@ -114,7 +118,7 @@
 // M140 - Set bed target temp
 // M190 - Sxxx Wait for bed current temp to reach target temp. Waits only when heating
 //        Rxxx Wait for bed current temp to reach target temp. Waits when heating and cooling
-// M200 - Set filament diameter
+// M200 - Set filament diameter D<millimeters>
 // M201 - Set max acceleration in units/s^2 for print moves (M201 X1000 Y1000)
 // M202 - Set max acceleration in units/s^2 for travel moves (M202 X1000 Y1000) Unused in Marlin!!
 // M203 - Set maximum feedrate that your machine can sustain (M203 X200 Y200 Z300 E10000) in mm/sec
@@ -1975,7 +1979,7 @@ void process_commands()
         //ClearToSend();
         return;
       }
-      //break;
+      break;
     case 2: // G2  - CW ARC
       if(Stopped == false) {
         get_arc_coordinates();
@@ -2141,6 +2145,9 @@ void process_commands()
           current_position[Y_AXIS]=code_value()+add_homeing[1];
         }
       }
+
+
+
 
       if(code_seen(axis_codes[Z_AXIS])) {
         if(code_value_long() != 0) {
@@ -2601,6 +2608,10 @@ void process_commands()
         SERIAL_PROTOCOL(getHeaterPower(-1));
 
 
+
+
+
+
         SERIAL_PROTOCOLLN("");
       return;
       break;
@@ -2942,6 +2953,9 @@ void process_commands()
         float area = .0;
         float radius = .0;
         if(code_seen('D')) {
+          SERIAL_ECHO_START;
+          SERIAL_ECHOLN("New Filament Diameter: ");
+          SERIAL_PROTOCOL((float)code_value());
           radius = (float)code_value() * .5;
           if(radius == 0) {
             area = 1;
@@ -2958,6 +2972,7 @@ void process_commands()
           if(tmp_extruder >= EXTRUDERS) {
             SERIAL_ECHO_START;
             SERIAL_ECHO(MSG_M200_INVALID_EXTRUDER);
+			break;
           }
         }
         volumetric_multiplier[tmp_extruder] = 1 / area;
@@ -3775,6 +3790,7 @@ void get_coordinates()
     next_feedrate = code_value();
     if(next_feedrate > 0.0) feedrate = next_feedrate;
   }
+/*
   #ifdef FWRETRACT
   if(autoretract_enabled)
   if( !(seen[X_AXIS] || seen[Y_AXIS] || seen[Z_AXIS]) && seen[E_AXIS])
@@ -3811,8 +3827,8 @@ void get_coordinates()
 
   }
   #endif //FWRETRACT
+*/
 }
-
 void get_arc_coordinates()
 {
 #ifdef SF_ARC_FIX
