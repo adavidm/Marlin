@@ -59,7 +59,7 @@
 #endif
 
 // Define this to set a custom name for your generic Mendel,
-#define CUSTOM_MENDEL_NAME "Kossel"
+#define CUSTOM_MENDEL_NAME "3DR"
 
 // This defines the number of extruders
 #define EXTRUDERS 1
@@ -80,19 +80,19 @@
 // Make delta curves from many straight lines (linear interpolation).
 // This is a trade-off between visible corners (not enough segments)
 // and processor overload (too many expensive sqrt calls).
-#define DELTA_SEGMENTS_PER_SECOND 200
+#define DELTA_SEGMENTS_PER_SECOND 100
 
 // Center-to-center distance of the holes in the diagonal push rods.
-#define DEFAULT_DELTA_DIAGONAL_ROD 217.5 // mm
+#define DEFAULT_DELTA_DIAGONAL_ROD 170.0 // mm
 
 // Horizontal offset from middle of printer to smooth rod center.
-#define DELTA_SMOOTH_ROD_OFFSET 152 //156.4 // mm //158
+#define DELTA_SMOOTH_ROD_OFFSET 111.9 //156.4 // mm //158
 
 // Horizontal offset of the universal joints on the end effector.
-#define DELTA_EFFECTOR_OFFSET 21 // mm 
+#define DELTA_EFFECTOR_OFFSET 33.0 // mm 
 
 // Horizontal offset of the universal joints on the carriages.
-#define DELTA_CARRIAGE_OFFSET 24 // mm  
+#define DELTA_CARRIAGE_OFFSET 14.0 // mm  
 
 // Effective horizontal distance bridged by diagonal push rods.
 #define DEFAULT_DELTA_RADIUS (DELTA_SMOOTH_ROD_OFFSET-DELTA_EFFECTOR_OFFSET-DELTA_CARRIAGE_OFFSET)
@@ -101,17 +101,17 @@
 #define DEBUG_MESSAGES
 
 //Speed for autocalibration travel and probing moves
-#define AUTOCAL_TRAVELRATE 500 // mm/sec
-#define AUTOCAL_PROBERATE 35 // mm/sec
+#define AUTOCAL_TRAVELRATE 350 // mm/sec
+#define AUTOCAL_PROBERATE 25 // mm/sec
 
 //Amount to lift head after probing a point
-#define AUTOCAL_PROBELIFT 2 // mm
+#define AUTOCAL_PROBELIFT 10 // mm
 
 // Precision for G30 delta autocalibration function
-#define AUTOCALIBRATION_PRECISION 0.03 // mm
+#define AUTOCALIBRATION_PRECISION 0.15 // mm
 
 // Diameter of print bed - this is used to set the distance that autocalibration probes the bed at.
-#define BED_DIAMETER 170 // mm
+#define BED_DIAMETER 100 // mm
 
 //Endstop Offset Adjustment - All values are in mm and must be negative (to move down away from endstop switches) 
 #define TOWER_A_ENDSTOP_ADJ 0 // Front Left Tower
@@ -130,13 +130,13 @@
 
 // Z-Probe variables
 // Start and end location values are used to deploy/retract the probe (will move from start to end and back again) 
-#define Z_PROBE_OFFSET {0, 10, -5.6, 0}  // X, Y, Z, E distance between hotend nozzle and deployed bed leveling probe.
-#define Z_PROBE_DEPLOY_START_LOCATION {20, 96, 30, 0}   // X, Y, Z, E start location for z-probe deployment sequence
-#define Z_PROBE_DEPLOY_END_LOCATION {5, 96, 30, 0} 	  // X, Y, Z, E end location for z-probe deployment sequence
-#define Z_PROBE_RETRACT_START_LOCATION {49, 84, 20, 0}  // X, Y, Z, E start location for z-probe retract sequence
-#define Z_PROBE_RETRACT_END_LOCATION {49, 84, 1, 0}     // X, Y, Z, E end location for z-probe retract sequence 
+#define Z_PROBE_OFFSET {0, 0, 0, 0}  // X, Y, Z, E distance between hotend nozzle and deployed bed leveling probe.
+#define Z_PROBE_DEPLOY_START_LOCATION {0, 0, 150, 0}   // X, Y, Z, E start location for z-probe deployment sequence
+#define Z_PROBE_DEPLOY_END_LOCATION {0, 0, 150, 0} 	  // X, Y, Z, E end location for z-probe deployment sequence
+#define Z_PROBE_RETRACT_START_LOCATION {0,0, 150, 0}  // X, Y, Z, E start location for z-probe retract sequence
+#define Z_PROBE_RETRACT_END_LOCATION {0, 0, 150, 0}     // X, Y, Z, E end location for z-probe retract sequence 
 
-#define AUTOLEVEL_GRID 24 // Distance between autolevel Z probing points, should be less than print surface radius/3.
+#define AUTOLEVEL_GRID 15 // Distance between autolevel Z probing points, should be less than print surface radius/3.
 
 //===========================================================================
 //=============================Thermal Settings  ============================
@@ -174,7 +174,7 @@
 
 // This makes temp sensor 1 a redundant sensor for sensor 0. If the temperatures difference between these sensors is to high the print will be aborted.
 //#define TEMP_SENSOR_1_AS_REDUNDANT
-#define MAX_REDUNDANT_TEMP_SENSOR_DIFF 10
+//#define MAX_REDUNDANT_TEMP_SENSOR_DIFF 10
 
 // Actual temperature must be close to target for this long before M109 returns success
 #define TEMP_RESIDENCY_TIME 10  // (seconds)
@@ -288,7 +288,7 @@
 // #define COREXY
 
 // coarse Endstop Settings
-#define ENDSTOPPULLUPS // Comment this out (using // at the start of the line) to disable the endstop pullup resistors
+//#define ENDSTOPPULLUPS // Comment this out (using // at the start of the line) to disable the endstop pullup resistors
 
 #ifndef ENDSTOPPULLUPS
   // fine Enstop settings: Individual Pullups. will be ignored if ENDSTOPPULLUPS is defined
@@ -313,9 +313,9 @@
 const bool X_MIN_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
 const bool Y_MIN_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
 const bool Z_MIN_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
-const bool X_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
-const bool Y_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
-const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop.
+const bool X_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
+const bool Y_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
+const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
 //#define DISABLE_MAX_ENDSTOPS
 //#define DISABLE_MIN_ENDSTOPS
 
@@ -371,7 +371,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic o
 // For deltabots this means top and center of the cartesian print volume.
 #define MANUAL_X_HOME_POS 0
 #define MANUAL_Y_HOME_POS 0
-#define MANUAL_Z_HOME_POS 258  // For delta: Distance between nozzle and print surface after homing.
+#define MANUAL_Z_HOME_POS 170  // For delta: Distance between nozzle and print surface after homing.
 
 //// MOVEMENT SETTINGS
 #define NUM_AXIS 4 // The axis order in all axis related arrays is X, Y, Z, E
@@ -379,12 +379,14 @@ const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic o
 
 // default settings
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {80, 80, 80, 439.5}
-#define DEFAULT_MAX_FEEDRATE          {200, 200, 200, 200}    // (mm/sec)
-#define DEFAULT_MAX_ACCELERATION      {9000,9000,9000,9000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {55.5, 55.5, 55.5, 120.0}
+#define DEFAULT_MAX_FEEDRATE          {380, 380, 380, 50}    // (mm/sec)
+#define DEFAULT_MAX_ACCELERATION      {1500,1500,1500,380}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
+//max accell was 500
 
-#define DEFAULT_ACCELERATION          3000    // X, Y, Z and E max acceleration in mm/s^2 for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  3000   // X, Y, Z and E max acceleration in mm/s^2 for retracts
+#define DEFAULT_ACCELERATION          1000    // X, Y, Z and E max acceleration in mm/s^2 for printing moves
+#define DEFAULT_RETRACT_ACCELERATION  1000   // X, Y, Z and E max acceleration in mm/s^2 for retracts
+// was 380
 
 // Offset of the extruders (uncomment if using more than one and relying on firmware to position when changing).
 // The offset has to be X=0, Y=0 for the extruder 0 hotend (default extruder).
@@ -393,9 +395,11 @@ const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic o
 // #define EXTRUDER_OFFSET_Y {0.0, 5.00}  // (in mm) for each extruder, offset of the hotend on the Y axis
 
 // The speed change that does not require acceleration (i.e. the software might assume it can be done instantaneously)
-#define DEFAULT_XYJERK                20.0    // (mm/sec)
-#define DEFAULT_ZJERK                 20.0    // (mm/sec)
-#define DEFAULT_EJERK                 20.0    // (mm/sec)
+#define DEFAULT_XYJERK                15.0    // (mm/sec)
+#define DEFAULT_ZJERK                 15.0    // (mm/sec)
+#define DEFAULT_EJERK                 15.0    // (mm/sec)
+//jerk was 20 for xy
+
 
 //===========================================================================
 //=============================Additional Features===========================
@@ -446,7 +450,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = false; // set to true to invert the logic o
 // http://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
 //
 // ==> REMEMBER TO INSTALL U8glib to your ARDUINO library folder: http://code.google.com/p/u8glib/wiki/u8glib
-//#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
 
 // The RepRapWorld REPRAPWORLD_KEYPAD v1.1
 // http://reprapworld.com/?products_details&products_id=202&cPath=1591_1626
