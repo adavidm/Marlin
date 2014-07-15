@@ -575,6 +575,7 @@ block->steps_x = labs((target[X_AXIS]-position[X_AXIS]) + (target[Y_AXIS]-positi
 block->steps_y = labs((target[X_AXIS]-position[X_AXIS]) - (target[Y_AXIS]-position[Y_AXIS]));
 #endif
   block->steps_z = labs(target[Z_AXIS]-position[Z_AXIS]);
+  block->steps_e = labs(target[E_AXIS]-position[E_AXIS]);
   block->steps_e *= volumetric_multiplier[active_extruder];
   block->steps_e *= extrudemultiply;
   block->steps_e /= 100;
@@ -918,6 +919,10 @@ block->steps_y = labs((target[X_AXIS]-position[X_AXIS]) - (target[Y_AXIS]-positi
 
   st_wake_up();
 }
+
+
+
+
 
 void plan_set_position(const float &x, const float &y, const float &z, const float &e)
 {
