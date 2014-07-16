@@ -1927,7 +1927,12 @@ void home_delta_axis() {
       feedrate=retract_feedrate*60;
       retracted=true;
       prepare_move();
+      #ifdef DELTA // move all axis equally when zlifting on Delta
+      	current_position[X_AXIS]-=retract_zlift;
+      	current_position[Y_AXIS]-=retract_zlift;
+      #endif //DELTA
       current_position[Z_AXIS]-=retract_zlift;
+      
       plan_set_position(current_position[X_AXIS], current_position[Y_AXIS], current_position[Z_AXIS], current_position[E_AXIS]);
       prepare_move();
       feedrate = oldFeedrate;
@@ -1936,6 +1941,10 @@ void home_delta_axis() {
       destination[Y_AXIS]=current_position[Y_AXIS];
       destination[Z_AXIS]=current_position[Z_AXIS];
       destination[E_AXIS]=current_position[E_AXIS];
+      #ifdef DELTA
+      	current_position[X_AXIS]+=retract_zlift;
+      	current_position[Y_AXIS]+=retract_zlift;
+      #endif //DELTA
       current_position[Z_AXIS]+=retract_zlift;
       plan_set_position(current_position[X_AXIS], current_position[Y_AXIS], current_position[Z_AXIS], current_position[E_AXIS]);
       //prepare_move();
